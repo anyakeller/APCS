@@ -7,7 +7,7 @@ public class MinChange{
         int n = 0;
         int p = 0;
         int change;
-        
+    //asdfas    
         
         q = coins / 25;
         coins = coins % 25;

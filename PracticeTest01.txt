@@ -37,7 +37,7 @@ Practice exam 1.
 
 6. Why does 0.1 + 0.1 + 0.1 == 0.3 evaluate to false?
 
----> errors accumulate when doind double arithmatic
+---> errors accumulate when doing double arithmetic
 
 
 *****************Programming Problems *******************

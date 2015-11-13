@@ -1,0 +1,135 @@
+Case Study: Page Rank
+Project01 Summary
+Anya Keller, Yiqing Hu, Jerry Chang, Nancy Cao
+
+=============================
+Files:
+
+Transition.java
+tiny.txt
+RandomSurfer.java
+Markov.java
+medium.txt
+Square.java
+PageGen.java
+HittingTime.java
+CoverTime.java
+TransitionTiny.txt
+GraphicSim.java
+summary.txt
+
+=============================
+Running code:
+$java Transition 90 < tiny.txt
+$java Transition 90 < tiny.txt | java RandomSurfer 1000000
+$java Transition 90 < tiny.txt | java Markov 40
+$java Transition 90 < tiny.txt | java Square 10
+$java PageGen 100 200 5 10
+$java Transition 90 < tiny.txt | java HittingTime 1000000
+$java CoverTime < TransitionTiny.txt
+$java Transition 90 < tiny.txt | java GraphicSim
+
+=============================
+Problem 1:
+    Replaced 0.9 with (0.01 * leapProb) and 0.1 with (0.01 * (1 - leapProb))
+    
+Problem 2:
+    Inserted an if statement that only increments a position in the link matrix if it is 0
+
+Problem 3:
+    Inserted a for statement that checks if a page has no links.  An if statement determines the response.
+
+
+
+Problem 4: 
+    The rows of the input matrix should add up to 1 if it was generated correctly.  The matrix should be fixed, not the code.  I fixed the code anyways...
+ 
+Problem 5:
+    $ java Transition 90 < tiny.txt | java RandomSurfer 10000
+        0.27390 0.26390 0.14730 0.24400 0.07090
+    $ java Transition 90 < tiny.txt | java RandomSurfer 100000
+        0.27249 0.26587 0.14661 0.24707 0.06796
+        
+Poblem 6:
+    $ java Transition 90 < tiny.txt | java Markov 2
+        0.04700000000.03800000000.36020000000.36920000000.1856000000
+    $ java Transition 90 < tiny.txt | java Markov 2
+        0.04700000000.03800000000.36020000000.36920000000.1856000000
+    $ java Transition 90 < tiny.txt | java Markov 8
+        0.26534250080.31877233310.13363028220.21684285240.0654120315
+
+Orig medium.txt:
+    $ java Transition 90 < medium.txt | java RandomSurfer 1000
+    0.00400 0.02300 0.01200 0.00200 0.00600 0.01400 0.06800 0.01500 0.02000 0.04800 0.00300 0.02300 0.01000 0.04300 0.02100 0.01700 0.03200 0.00400 0.02200 0.02000 0.00300 0.03400 0.06900 0.04200 0.01000 0.00400 0.00400 0.00700 0.04200 0.00300 0.03400 0.02600 0.02500 0.01100 0.02100 0.02100 0.00200 0.02300 0.01200 0.02000 0.01400 0.01700 0.02000 0.01400 0.01400 0.01100 0.03100 0.02000 0.02100 0.01800
+        
+Problem 7:
+    $ java Transition 90 < medium.txt | java RandomSurfer 1000
+ 0.00400 0.00800 0.00900 0.00100 0.00500 0.02100 0.04800 0.03600 0.01100 0.05000 0.00100 0.02000 0.01300 0.03300 0.00900 0.02700 0.02500 0.00600 0.02000 0.02900 0.00300 0.01800 0.03900 0.03400 0.01800 0.00600 0.01900 0.01000 0.04500 0.00200 0.04200 0.01500 0.01800 0.01000 0.02700 0.02700 0.00100 0.04200 0.02000 0.02800 0.01300 0.03200 0.01600 0.02400 0.03000 0.00700 0.02600 0.02100 0.02000 0.01100
+        
+Problem 8:
+    $ java Transition 90 < medium.txt | java RandomSurfer 1000
+    0.00400 0.02800 0.00800 0.00200 0.00500 0.00900 0.04500 0.01100 0.02400 0.01500 0.00500 0.07500 0.01100 0.02600 0.03900 0.01700 0.01000 0.00300 0.00600 0.02200 0.00400 0.08600 0.09300 0.18700 0.00400 0.00400 0.01100 0.00300 0.01100 0.00200 0.01600 0.01300 0.01100 0.01100 0.01700 0.01500 0.00300 0.01600 0.00800 0.00700 0.00900 0.00800 0.00800 0.00800 0.00600 0.01300 0.01300 0.01000 0.02300 0.01500
+    
+Problem 9:
+    13 30 47
+One problem is that some pages have pages that link to page 23 that could increase the probability of going to page 23. As we traced the whole thing through, we saw that every page can be linked to  page 23, which means that every page can increase the probability of going to page 23. At the same time, it also decreases the probability because it also included other links.
+
+Problem 10:
+    any link not 13, 30, or 47
+
+Problem 11:
+8 8
+0.01250 0.91250 0.01250 0.01250 0.01250 0.01250 0.01250 0.01250 
+0.01250 0.01250 0.37250 0.37250 0.19250 0.01250 0.01250 0.01250 
+0.01250 0.01250 0.01250 0.31250 0.01250 0.31250 0.31250 0.01250 
+0.46250 0.01250 0.01250 0.01250 0.01250 0.46250 0.01250 0.01250 
+0.46250 0.01250 0.46250 0.01250 0.01250 0.01250 0.01250 0.01250 
+0.01250 0.01250 0.01250 0.01250 0.01250 0.01250 0.46250 0.46250 
+0.01250 0.01250 0.01250 0.01250 0.01250 0.01250 0.01250 0.91250 
+0.01250 0.01250 0.01250 0.46250 0.01250 0.46250 0.01250 0.01250 
+
+Basically made a text file called 8Page.txt of the example and ran Transition.java and RandomSurfer.java multiple times in order to determine the transition properties.
+
+Problem 12:
+0
+0.10055085660.10299561510.06354631470.16462980290.03103932650.20163434480.12229908840.2133046510
+
+Used 8Page.txt once again in addition to Transition.java and Markov.java in order to determine the transition properties of the 8 page example.
+
+Problem 13:
+    $java Transition 90 < tiny.txt || Square 10
+    
+Problem 14:
+    $java PageGen 100 200 0 0
+
+Problem 15:
+    $java PageGen 100 200 5 10
+It was particularly challenging to find a way to get 10 percent of the pages at random, each unique.  Ultimately, I ended up writing a helper function which creates and fills an array with page numbers.
+
+Problem 16:
+6
+0 4
+1 4
+2 1  
+3 0  3 1
+4 0  4 1
+5 2  5 3
+
+Problem 17:
+    % java Transition < tiny.txt | java HittingTime 1000000
+
+	Page Rank: 0.27297
+	Hitting Time: 3.66340
+	1 / Page Rank: 3.66340
+
+	Page Rank: 0.26583
+	Hitting Time: 3.76180
+	1 / Page Rank: 3.76180
+
+Problem 18:
+    $java CoverTime < TransitionTiny.txt
+One problem is realizing that this function takes the probability of each pages on each page as input instead of the the page data. The input can be the page data if we first run it through function transition and then perform what CoverTime did to the output of transition.
+
+Problem 19:
+    $java Transition 90 < tiny.txt | java GraphicSim
+One problem with this question was getting GraphicSim to read the text file.  Then I realized that the text file had two numbers at the top representing the array size instead of one.  Another problem was getting the image to center but I overcame that with the help of checkerboard code. 
